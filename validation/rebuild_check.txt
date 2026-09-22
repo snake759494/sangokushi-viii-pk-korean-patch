@@ -1,0 +1,21 @@
+저장소만으로 다시 빌드한 결과 (2026-09-22)
+
+방법
+  1. 이 저장소를 빈 폴더로 복사
+  2. 루트에 원본 BIN 과 글꼴 3개(SeoulHangangB.ttf, SeoulHangangEB.ttf, NanumSquareNeo-cBd.ttf)만 추가
+  3. python work/tools/build_all.py
+     (extract_originals → font_build_ko → build_names → gfx_main → gfx_raw → gfx_wargrp4
+      → gfx_sys4 → gfx_legend → gfx_emtmp → build_text → build_bin)
+
+환경
+  Windows 11, Python 3.13.1, numpy 2.2.3, scipy 1.18.0, Pillow 11.1.0
+
+결과
+  원본 BIN  SHA-256 646e12421916ca4d0a958bdd719e68fd87a59d5d1be07993f5c511f11e1e3cb4
+  결과 BIN  SHA-256 234839ec7af1c29db1a27e7abea519be9895270590d94f8b37567e294a8b580e
+  배포판    SHA-256 234839ec7af1c29db1a27e7abea519be9895270590d94f8b37567e294a8b580e  -> 일치 (바이트 동일)
+
+  바뀐 파일: SLPM_623.19, F_FONT.S8, M_MSG.S8, D_SCE.S8, G_MAIN.S8, G_GUNGI.S8, G_WARGRP.S8,
+             G_IKBG.S8, G_SYSTEM.S8, G_EMTMP.S8 (10개). M_MSG.S8 은 LBA 46030~47141 로 옮김.
+
+그림 글자는 글꼴을 Pillow 로 그리므로 글꼴 파일·Pillow 판이 다르면 픽셀이 조금 달라질 수 있습니다.
