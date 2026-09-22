@@ -83,7 +83,7 @@ Mode 2 Form 1 의 **EDC/ECC 를 다시 계산**합니다(`work/tools/cdecc.py`).
 ## 6. 배포 패치
 
 ```powershell
-.\xdelta3.exe -e -9 -S none -A -s "Sangokushi VIII with Power-Up Kit (Japan).bin" "Sangokushi VIII with Power-Up Kit (Korean).bin" Sangokushi_VIII_PK_KO_v1.0.xdelta
+.\xdelta3.exe -e -9 -S none -A -s "Sangokushi VIII with Power-Up Kit (Japan).bin" "Sangokushi VIII with Power-Up Kit (Korean).bin" Sangokushi_VIII_PK_KO_v1.0.1.xdelta
 ```
 
 ## 번역을 고칠 때

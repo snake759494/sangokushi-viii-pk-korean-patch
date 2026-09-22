@@ -1,12 +1,12 @@
 # 삼국지 VIII with 파워업키트 PS2 한글패치
 
-PS2 일본판 **三國志VIII with パワーアップキット (SLPM-62319)**용 비공식 한국어 패치입니다. 게임 안 텍스트 전부(메뉴·도움말·용어사전·튜토리얼·시나리오 개요·인물 대사·이벤트·연표·무장 열전), 무장·도시·주·아이템 이름, 실행파일의 문자열, 그림 글자(조작 안내판·신분 배지·전투 정보창·일기토·부대 표시·지도 범례·주 이름 등)를 한국어로 바꿨습니다. 현재 배포판은 **v1.0 (2026-09-22)**입니다.
+PS2 일본판 **三國志VIII with パワーアップキット (SLPM-62319)**용 비공식 한국어 패치입니다. 게임 안 텍스트 전부(메뉴·도움말·용어사전·튜토리얼·시나리오 개요·인물 대사·이벤트·연표·무장 열전), 무장·도시·주·아이템 이름, 실행파일의 문자열, 그림 글자(조작 안내판·신분 배지·전투 정보창·일기토·부대 표시·지도 범례·주 이름 등)를 한국어로 바꿨습니다. 현재 배포판은 **v1.0.1 (2026-09-23)**입니다.
 
 [패치 다운로드](https://github.com/snake759494/sangokushi-viii-pk-korean-patch/releases/latest) · [기술 설명](docs/TECHNICAL.md) · [재빌드](docs/BUILD.md) · [변경 기록](CHANGELOG.md) · [권리 안내](RIGHTS.md)
 
 | 파일 | 내용 | 크기 |
 | --- | --- | --- |
-| `Sangokushi_VIII_PK_KO_v1.0.xdelta` | 원본 BIN 에 적용하는 차분 패치 | 1.8 MB |
+| `Sangokushi_VIII_PK_KO_v1.0.1.xdelta` | 원본 BIN 에 적용하는 차분 패치 | 1.8 MB |
 
 저장소에는 제작 소스·번역·검증 자료를 공개합니다. 원본 및 완성 BIN, 게임에서 추출한 파일, 글꼴 파일, 외부 실행 파일은 포함하지 않습니다. GitHub 가 자동 생성하는 Source code ZIP/TAR 는 저장소 소스의 압축본이며 게임 파일이 아닙니다.
 
@@ -30,7 +30,7 @@ PS2 일본판 **三國志VIII with パワーアップキット (SLPM-62319)**용
 
 | 배포 파일 | xdelta 크기 · SHA-256 | 적용 결과 BIN SHA-256 |
 | --- | --- | --- |
-| v1.0 | 1,823,662 바이트 · `130e9ba91583e97dca0958593a38f9eda8a5ed51c93709fe285aeef46b10d2e5` | `234839ec7af1c29db1a27e7abea519be9895270590d94f8b37567e294a8b580e` |
+| v1.0.1 | 1,823,375 바이트 · `8fcd0927809ecc4a4d27a7f5790b72e395a9cceb9a92eab30ab9a214d1a5c006` | `402c6cfdd3a9a363d305c1e0245e92bf20a3d0936f96dda3d8c24fc261044bd2` |
 
 적용 결과 BIN 크기는 원본과 같은 507,850,896 바이트입니다. 이 값들은 이번 배포에 사용한 로컬 파일을 직접 해시한 값입니다(`release_manifest.json`). 원본 게임 파일은 사용자가 별도로 준비해야 합니다. 이전 한글판이나 다른 패치가 적용된 BIN 에 덧씌우지 말고 항상 위 원본에 적용하세요.
 
@@ -49,10 +49,10 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\Sangokushi VIII with Power-Up Kit
 
 ### xdelta UI 사용
 
-1. 릴리즈에서 `Sangokushi_VIII_PK_KO_v1.0.xdelta` 를 받습니다.
+1. 릴리즈에서 `Sangokushi_VIII_PK_KO_v1.0.1.xdelta` 를 받습니다.
 2. xdelta3 패치를 지원하는 도구의 **Apply Patch** 기능을 엽니다.
 3. **Patch** 에 xdelta 파일, **Source File** 에 해시가 일치하는 원본 BIN 을 선택합니다.
-4. **Output File** 에 원본과 다른 새 파일명, 예를 들어 `Sangokushi VIII with Power-Up Kit (Korean v1.0).bin` 을 지정합니다.
+4. **Output File** 에 원본과 다른 새 파일명, 예를 들어 `Sangokushi VIII with Power-Up Kit (Korean v1.0.1).bin` 을 지정합니다.
 5. 적용 완료 후 결과 BIN 의 SHA-256 을 위 표와 비교하고, 아래처럼 `.cue` 를 만듭니다.
 
 호환성을 위해 xdelta 는 2차 압축과 파일 경로 헤더 없이 만들었습니다. UI 명칭은 도구마다 조금 다릅니다. 외부 도구 실행 파일은 이 릴리즈에 포함하지 않습니다. xdelta 자체의 소스와 배포 안내는 [공식 프로젝트](https://github.com/jmacd/xdelta)를 참고하세요.
@@ -60,14 +60,14 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\Sangokushi VIII with Power-Up Kit
 ### 명령줄 사용
 
 ```powershell
-.\xdelta3.exe -d -s '.\Sangokushi VIII with Power-Up Kit (Japan).bin' '.\Sangokushi_VIII_PK_KO_v1.0.xdelta' '.\Sangokushi VIII with Power-Up Kit (Korean v1.0).bin'
-Get-FileHash -Algorithm SHA256 -LiteralPath '.\Sangokushi VIII with Power-Up Kit (Korean v1.0).bin'
+.\xdelta3.exe -d -s '.\Sangokushi VIII with Power-Up Kit (Japan).bin' '.\Sangokushi_VIII_PK_KO_v1.0.1.xdelta' '.\Sangokushi VIII with Power-Up Kit (Korean v1.0.1).bin'
+Get-FileHash -Algorithm SHA256 -LiteralPath '.\Sangokushi VIII with Power-Up Kit (Korean v1.0.1).bin'
 ```
 
 원본·패치·결과의 해시를 자동 검사하고 `.cue` 까지 만드는 도구도 있습니다. Python 3 과 xdelta3 실행 파일을 준비한 뒤 저장소 루트에서 다음처럼 사용합니다.
 
 ```powershell
-python tools/apply_release.py --xdelta '.\xdelta3.exe' --source '.\Sangokushi VIII with Power-Up Kit (Japan).bin' --patch '.\Sangokushi_VIII_PK_KO_v1.0.xdelta' --output '.\Sangokushi VIII with Power-Up Kit (Korean v1.0).bin'
+python tools/apply_release.py --xdelta '.\xdelta3.exe' --source '.\Sangokushi VIII with Power-Up Kit (Japan).bin' --patch '.\Sangokushi_VIII_PK_KO_v1.0.1.xdelta' --output '.\Sangokushi VIII with Power-Up Kit (Korean v1.0.1).bin'
 ```
 
 이 도구는 기존 출력 파일을 덮어쓰지 않습니다. 패치 적용 실패나 결과 해시 불일치 시 성공으로 처리하지 않습니다.
@@ -77,7 +77,7 @@ python tools/apply_release.py --xdelta '.\xdelta3.exe' --source '.\Sangokushi VI
 결과 BIN 과 같은 폴더에 같은 이름의 `.cue` 를 두고, 원본 `.cue` 와 같은 내용에서 `FILE` 줄의 파일 이름만 바꿉니다.
 
 ```
-FILE "Sangokushi VIII with Power-Up Kit (Korean v1.0).bin" BINARY
+FILE "Sangokushi VIII with Power-Up Kit (Korean v1.0.1).bin" BINARY
   TRACK 01 MODE2/2352
     INDEX 01 00:00:00
 ```

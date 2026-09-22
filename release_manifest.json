@@ -1,6 +1,6 @@
 {
- "version": "v1.0",
- "date": "2026-09-22",
+ "version": "v1.0.1",
+ "date": "2026-09-23",
  "game": "Sangokushi VIII with Power-Up Kit (Japan) / SLPM-62319 / PS2",
  "xdelta_options": "xdelta3 3.0.11, -e -9 -S none -A (no secondary compression, no application header)",
  "source_bin": {
@@ -22,20 +22,20 @@
  },
  "assets": [
   {
-   "file": "Sangokushi_VIII_PK_KO_v1.0.xdelta",
+   "file": "Sangokushi_VIII_PK_KO_v1.0.1.xdelta",
    "patch": {
-    "size": 1823662,
-    "crc32": "c3781d8c",
-    "md5": "c7e9fdef5cee49170a5d90f8affe03c2",
-    "sha1": "956da2c28cf1fe8a0ee44ef52ea7b625daa55b03",
-    "sha256": "130e9ba91583e97dca0958593a38f9eda8a5ed51c93709fe285aeef46b10d2e5"
+    "size": 1823375,
+    "crc32": "55532624",
+    "md5": "db4b9b75ea25667f1f7566e9d59576fd",
+    "sha1": "2db6af6c983ffa4c78e6cadcec7c996156256781",
+    "sha256": "8fcd0927809ecc4a4d27a7f5790b72e395a9cceb9a92eab30ab9a214d1a5c006"
    },
    "output_bin": {
     "size": 507850896,
-    "crc32": "735ae37a",
-    "md5": "b023ace393335956097825251a5f2d77",
-    "sha1": "91efba6c74daf2ecfb5210f62e66853ef47e3c8d",
-    "sha256": "234839ec7af1c29db1a27e7abea519be9895270590d94f8b37567e294a8b580e"
+    "crc32": "28075a81",
+    "md5": "17b44f6fb207cd57067d5827bc80123e",
+    "sha1": "d7091e2bbd414529c46ad5edbb780d2f4ed8d74f",
+    "sha256": "402c6cfdd3a9a363d305c1e0245e92bf20a3d0936f96dda3d8c24fc261044bd2"
    }
   }
  ],
