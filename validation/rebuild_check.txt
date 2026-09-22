@@ -1,4 +1,4 @@
-저장소만으로 다시 빌드한 결과 (v1.0.1, 2026-09-23)
+저장소만으로 다시 빌드한 결과 (v1.0.2, 2026-09-23)
 
 방법
   1. 이 저장소를 빈 폴더로 복사
@@ -12,9 +12,9 @@
 
 결과
   원본 BIN  SHA-256 646e12421916ca4d0a958bdd719e68fd87a59d5d1be07993f5c511f11e1e3cb4
-  결과 BIN  SHA-256 402c6cfdd3a9a363d305c1e0245e92bf20a3d0936f96dda3d8c24fc261044bd2
-  배포판    SHA-256 402c6cfdd3a9a363d305c1e0245e92bf20a3d0936f96dda3d8c24fc261044bd2  -> 일치 (바이트 동일)
-  (v1.0 도 같은 방법으로 234839ec7af1c29db1a27e7abea519be9895270590d94f8b37567e294a8b580e 와 일치 확인)
+  결과 BIN  SHA-256 6e78c82ede0f1c1055b9b53952cf93ccc2eabdea7b806583d16ab201294a50c7
+  배포판    SHA-256 6e78c82ede0f1c1055b9b53952cf93ccc2eabdea7b806583d16ab201294a50c7  -> 일치 (바이트 동일)
+  (같은 방법으로 v1.0 234839ec…, v1.0.1 402c6cfd… 도 일치 확인)
 
   바뀐 파일: SLPM_623.19, F_FONT.S8, M_MSG.S8, D_SCE.S8, G_MAIN.S8, G_GUNGI.S8, G_WARGRP.S8,
              G_IKBG.S8, G_SYSTEM.S8, G_EMTMP.S8 (10개). M_MSG.S8 은 LBA 46030~47141 로 옮김.
