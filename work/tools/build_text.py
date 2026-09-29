@@ -42,6 +42,38 @@ def read_tsv(path):
     return rows
 
 
+# 마을 주민 이름: 앞 글자 표(0x4719A0)와 뒷 글자 표(0x471A40)의 짝을 이어 붙여 만든다
+# (若+者, 若+娘 ...). 한 글자씩 읽으면 「약자」「약낭」이 되므로, 짝마다 앞 포인터를
+# 완성된 낱말로, 뒤 포인터를 빈 문자열로 돌린다. 두 표의 문자열 52칸(0x4F4580~)은
+# 이 표에서만 참조하므로 낱말 저장 칸으로 다시 쓴다.
+RES_PRE, RES_SUF = 0x4719A0, 0x471A40
+RES_POOL = [0x4F4580 + 8 * k for k in range(52)]
+RESIDENTS = [
+    "음평", "악신", "환관", "문관", "주민", "수적", "이민족", "이민족", "왜인", "사자",
+    "위병", "농민", "병사", "상인", "목수", "노인", "청년", "여인", "부호", "아이",
+    "일꾼", "장인", "도둑", "낭인", "주모", "여주", "남편", "남편", "소매", "소매",
+    "소매", "낚시꾼", "건달", "전당포", "점주", "암상인", "행상", "소녀", "",
+]
+
+
+def patch_residents(elf):
+    va = lambda o: o - 0x80 + 0x100000
+    pool = iter(RES_POOL)
+    empty = next(pool)
+    slots = {"": empty}
+    elf[empty:empty + 8] = bytes(8)
+    for i, w in enumerate(RESIDENTS):
+        if w not in slots:
+            o = next(pool)
+            b = ko_enc.encode(w)
+            if len(b) + 1 > 8:
+                raise SystemExit("주민 이름이 깁니다: " + w)
+            elf[o:o + 8] = b + bytes(8 - len(b))
+            slots[w] = o
+        struct.pack_into("<I", elf, RES_PRE + 4 * i, va(slots[w]))
+        struct.pack_into("<I", elf, RES_SUF + 4 * i, va(empty))
+
+
 def find_entry(elf, name):
     i = 0
     while True:
@@ -160,6 +192,8 @@ def main():
             continue
         elf[off:off + cap] = b + b"\0" * (cap - len(b))
         e_ko += 1
+
+    patch_residents(elf)
 
     os.makedirs(OUT, exist_ok=True)
     new_msg = c.build()

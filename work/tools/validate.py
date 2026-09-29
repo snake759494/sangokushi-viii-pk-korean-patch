@@ -44,9 +44,11 @@ def unit_limits():
 
 
 def skeleton(s):
-    """태그·⏎·‖ 의 열(텍스트를 뺀 뼈대)."""
-    return tuple(m.group(0) for m in re.finditer(
-        r"\{[0-9A-F]{4}(?::[0-9,]+)?\}|" + NL + "|" + NUL, s))
+    """태그·⏎·‖ 의 열(텍스트를 뺀 뼈대). 말투 매크로(055A~05FF)는 서로 바꿔 써도 된다
+    (한국어 어미에 맞는 매크로로 바꾸는 경우: 「~다?」 -> 의문형 {05B7} 등)."""
+    return tuple("{MACRO}" if re.fullmatch(r"\{05[5-9A-F][0-9A-F]\}", m.group(0))
+                 and m.group(0) >= "{055A}" else m.group(0)
+                 for m in re.finditer(r"\{[0-9A-F]{4}(?::[0-9,]+)?\}|" + NL + "|" + NUL, s))
 
 
 def width(s):
@@ -90,6 +92,11 @@ def _check(jp, ko, lim):
         errs.append("줄 수(⏎) 다름: %d -> %d" % (jp.count(NL), ko.count(NL)))
     if jp.count(NUL) != ko.count(NUL):
         errs.append("‖ 개수 다름: %d -> %d" % (jp.count(NUL), ko.count(NUL)))
+    # 제어 코드는 ‖(NUL)·⏎·다른 코드 바로 뒤에만 온다. 글자 바로 뒤에 두면 게임이 코드를 글자로 찍는다
+    # (「이거 {0562}」 -> 「이거 $b」).
+    m = re.search(r"[^" + NUL + NL + r"}{](\{[0-9A-F]{4}(?::[0-9,]+)?\})", ko)
+    if m:
+        errs.append("글자 바로 뒤에 코드: %r" % ko[max(0, m.start() - 6):m.end()])
     plain_ko = TAG.sub("", ko).replace(NUL, "")
     for ch in plain_ko:
         if ch == "\u30fb":          # \uac00\uc6b4\ub383\uc810\uc740 \uadf8\ub300\ub85c \uc4f8 \uc218 \uc788\ub2e4
